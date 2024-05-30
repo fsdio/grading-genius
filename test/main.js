@@ -1,6 +1,6 @@
-import { checkEqualCode, checkEqualOutput } from '../lib/checkEqualsCode.js';
+import { checkEqualCode } from '../lib/checkEqualsCode.js';
 import { getAllSpesification } from "../lib/checkSpesifications.js";
-import { checkExpected } from "../lib/checkExpecteds.js";
+import { checkExpecteds } from "../lib/checkExpecteds.js";
 import fs from "fs";
 
 async function readFileCode(namaFile) {
@@ -12,8 +12,8 @@ async function readFileCode(namaFile) {
 }
 
 const code = await readFileCode('test/example.js');
+const code1 = await readFileCode('test/hello.js');
 
 console.log(await checkEqualCode(code,code));
 console.log(getAllSpesification(code));
-console.log(checkExpected('', '', code, 'Hello World!'));
-console.log(checkEqualOutput('test/script.js', 'test/script-pro.js'));
+console.log(checkExpecteds('test/script.js', 'test/script-pro.js'));
