@@ -2,11 +2,17 @@
 
 ## How to use
 
-1. Install library
-``npm install grading-genius``
-2. Method used library
-   * ``await checkEqualCode(code:string, code:string)`` use check equal code
-   * ``getAllSpesification(code:string)`` use check spesification (variabel, function, class)
-   * ``checkExpected(firstCode:string, second:string, code:string, expectedOutput:any)`` check equal expected output with string
-   * ``checkEqualOutput(firstFilePath:string, secondFilePath:string)`` check equal expected output with terminal compiler
-3. have fun code.
+## 1. Install library: ``npm install grading-genius``
+## 2. Method used library
+### Use check equal code
+   * ``const resultEqual = await checkEqualsCode.checkEqualCode(example_code, programmer_code);``
+   * ``console.log(resultEqual);`` 
+### Use check spesification (programmer_code)
+   * ``const resultSpesifikasi = checkSpesifications.getAllSpecifications(programmer_code);``
+   * ``console.log(JSON.stringify(resultSpesifikasi));``
+### check equal expected output
+   * ``const equalWithOutTerminal = await checkEqualsCode.checkEqualCode('test/example.js', 'test/programmer_1.js');``
+   * ``console.log(equalWithOutTerminal);``
+   * ``const ecpectedWithOutTerminal = checkExpecteds.checkExpecteds('test/example.js', 'test/programmer_1.js');``
+   * ``console.log(ecpectedWithOutTerminal);``
+## 3. have fun code.

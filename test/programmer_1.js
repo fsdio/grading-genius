@@ -11,4 +11,4 @@ const variabelConst = "Const Variabels";
 let variabelLet = "Let Variabels";
 
 console.log(variabelConst);
-console.log(variabelLet);
+console.log(variabelConst);

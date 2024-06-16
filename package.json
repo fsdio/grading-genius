@@ -1,7 +1,7 @@
 {
   "name": "grading-genius",
-  "version": "1.0.0",
-  "description": "belajar grading code",
+  "version": "1.0.3",
+  "description": "Garding Code to check spesification",
   "main": "index.js",
   "type": "module",
   "scripts": {
@@ -22,7 +22,6 @@
     "babel-cli": "^6.26.0",
     "depcheck": "^1.4.7",
     "eslint": "^9.2.0",
-    "globals": "^15.2.0",
-    "prettier": "^3.2.5"
+    "globals": "^15.2.0"
   }
 }
