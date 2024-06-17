@@ -1,6 +1,6 @@
 {
   "name": "grading-genius",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Garding Code to check spesification",
   "main": "index.js",
   "type": "module",
@@ -12,8 +12,8 @@
   "author": "rahmat sunjani",
   "license": "ISC",
   "dependencies": {
-    "lodash": "^4.17.21",
-    "natural": "^7.0.5"
+    "acorn": "^8.12.0",
+    "eslint": "^9.5.0"
   },
   "devDependencies": {
     "@babel/core": "^7.24.5",
@@ -21,7 +21,6 @@
     "@babel/preset-env": "^7.24.5",
     "babel-cli": "^6.26.0",
     "depcheck": "^1.4.7",
-    "eslint": "^9.2.0",
     "globals": "^15.2.0"
   }
 }
