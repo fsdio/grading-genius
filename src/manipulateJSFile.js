@@ -11,63 +11,57 @@ class ManipulateJSFile {
 			let variableFound = false;
 			this.traverse(ast, node => {
 				if (node.type === 'VariableDeclarator' && node.id.name === variableName) {
-					node.init.value = newValue;
+					if (node.init.type === 'Literal') {
+						node.init.value = newValue;
+						node.init.raw = JSON.stringify(newValue); // Update raw value to handle strings correctly
+					}
 					variableFound = true;
 				}
 			});
 			
 			if (!variableFound) {
-				console.error(`Variabel '${variableName}' tidak ditemukan dalam file '${fileName}'.`);
-				return false;
+				return {
+					status: false,
+					variableName: variableName,
+					fileName: fileName
+				};
 			}
 			
 			await fs.promises.writeFile(fileName, escodegen.generate(ast), 'utf-8');
-			console.log(`Nilai variabel '${variableName}' dalam file '${fileName}' berhasil diubah menjadi '${newValue}'.`);
-			return true;
+			const lastValue = this.getLastVariableValue(ast, variableName);
+			return {
+				status: true,
+				variableName: variableName,
+				fileName: fileName,
+				newValue: newValue,
+				lastValue: lastValue,
+			};
 		} catch (error) {
-			console.error('Terjadi kesalahan:', error);
-			return false;
-		}
-	}
-	
-	async manipulateArrayVariable(fileName, arrayName, index, newValue) {
-		try {
-			const code = await fs.promises.readFile(fileName, 'utf-8');
-			const ast = esprima.parseScript(code);
-			
-			let arrayFound = false;
-			this.traverse(ast, node => {
-				if (node.type === 'VariableDeclarator' && node.id.name === arrayName && node.init.type === 'ArrayExpression') {
-					if (node.init.elements[index]) {
-						node.init.elements[index].value = newValue;
-						arrayFound = true;
-					}
-				}
-			});
-			
-			if (!arrayFound) {
-				console.error(`Variabel array '${arrayName}' tidak ditemukan atau indeks '${index}' di luar batas dalam file '${fileName}'.`);
-				return false;
-			}
-			
-			await fs.promises.writeFile(fileName, escodegen.generate(ast), 'utf-8');
-			console.log(`Nilai variabel array '${arrayName}' indeks '${index}' dalam file '${fileName}' berhasil diubah menjadi '${newValue}'.`);
-			return true;
-		} catch (error) {
-			console.error('Terjadi kesalahan:', error);
-			return false;
+			return {
+				success: false,
+				lastValue: null,
+				error: error.message,
+			};
 		}
 	}
 	
 	traverse(node, callback) {
-		// Implementasi traversal AST (Abstract Syntax Tree) sesuai kebutuhan
-		// Anda bisa menyesuaikan dengan struktur AST yang lebih spesifik jika diperlukan
 		if (node && typeof node === 'object') {
 			callback(node);
 			Object.keys(node).forEach(key => {
 				this.traverse(node[key], callback);
 			});
 		}
+	}
+	
+	getLastVariableValue(ast, variableName) {
+		let lastValue = null;
+		this.traverse(ast, node => {
+			if (node.type === 'VariableDeclarator' && node.id.name === variableName) {
+				lastValue = node.init.value;
+			}
+		});
+		return lastValue;
 	}
 }
 

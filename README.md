@@ -4,13 +4,41 @@
 
 ## 1. Install library:
     npm install grading-genius
-## 2. Method used library
-### Use check equal & expected code
-    const resultEqual = analyzer.compareFileOutputs('example.js', 'programmer_1.js');
-    console.log(resultEqual);
-### Use check spesification (programmer_code)
-    const specifications = analyzer.getSpecificationsFromCode('example.js');
-    console.log(specifications);
+## 2. Import library
+    import { ManipulateJSFile, CodeAnalyzer } from "grading-genius"
+## 3. Method used check spesification
+    const analizer = new CodeAnalyzer()
+    const spec = analizer.getSpecificationsFromCode(fileName)
+
+    JSON :
+    {
+        functionNames: [],
+        classNames: [],
+        variableNames: []
+    }
+### 4. Method used check equals output
+    const analizer = new CodeAnalyzer()
+    const checkOutput = analizer.compareFileOutputs(fileName, fileName)
+
+    JSON :
+    {
+        status: boolean,
+        expectedOutput: string,
+        actualOutput: string
+    }
+## 4. Method used manipulation variable
+    manipulateJSFile.manipulateVariable(fileName, variableName, newValue)
+    .then(result)
+    .catch(error});
+
+    JSON:
+    {
+        status: boolean,
+        variableName: string,
+        fileName: string,
+        newValue: any,
+        lastValue: any
+    }
 ## 3. Have fun code.
 
 # Join collaboration GitHub
