@@ -10,13 +10,13 @@ const fileName = 'example.js';
 const variableName = 'angka';
 const newValue = 75;
 //
-manipulateJSFile.manipulateVariable(fileName, variableName, newValue).then(
-	result => {
-		console.log(result)
-	}
-).catch(error => {
-	console.error(`Error: ${error.error}`);
-});
+// manipulateJSFile.manipulateVariable(fileName, variableName, newValue).then(
+// 	result => {
+// 		console.log(result)
+// 	}
+// ).catch(error => {
+// 	console.error(`Error: ${error.error}`);
+// });
 //
 // manipulateJSFile.getLastVariableValue();
 
@@ -25,3 +25,6 @@ manipulateJSFile.manipulateVariable(fileName, variableName, newValue).then(
 //
 // const checkOutput = analizer.compareFileOutputs(fileName, fileName);
 // console.log(checkOutput);
+
+// const checkEquals = analizer.getCheckEqualCode(fileName,fileName)
+// console.log(checkEquals)

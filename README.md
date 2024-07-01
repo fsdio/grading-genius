@@ -39,7 +39,14 @@
         newValue: any,
         lastValue: any
     }
-## 3. Have fun code.
+
+## 5. Method used check equals code
+    const checkEquals = analizer.getCheckEqualCode(fileName,fileName)
+    console.log(checkEquals)
+
+    RETURN:
+    boolean
+## 6. Have fun code.
 
 # Join collaboration GitHub
 https://github.com/fsdio/grading-genius

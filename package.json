@@ -1,6 +1,6 @@
 {
   "name": "grading-genius",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Garding Code to check spesification",
   "main": "src/index.js",
   "type": "module",
