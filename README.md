@@ -26,20 +26,6 @@
         expectedOutput: string,
         actualOutput: string
     }
-## 4. Method used manipulation variable
-    manipulateJSFile.manipulateVariable(fileName, variableName, newValue)
-    .then(result)
-    .catch(error});
-
-    JSON:
-    {
-        status: boolean,
-        variableName: string,
-        fileName: string,
-        newValue: any,
-        lastValue: any
-    }
-
 ## 5. Method used check equals code
     const checkEquals = analizer.getCheckEqualCode(fileName,fileName)
     console.log(checkEquals)
