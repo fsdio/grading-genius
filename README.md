@@ -3,36 +3,76 @@
 ## How to use
 
 ## 1. Install library:
-    npm install grading-genius
+```
+npm install grading-genius
+```
 ## 2. Import library
-    import { ManipulateJSFile, CodeAnalyzer } from "grading-genius"
-## 3. Method used check spesification
-    const analizer = new CodeAnalyzer()
-    const spec = analizer.getSpecificationsFromCode(fileName)
+```javascript
+import { CodeAnalyzer } from "grading-genius"
+```
+## 3. Method in library
+### Iniliasization package
+```javascript
+analizer = new CodeAnalyzer()
+```
+### Function to retrieve source code specifications
+```javascript
+analizer.getSpecificationsFromCode(fileName)
+```
+### Check the compiler result by converting it to base64
+```javascript
+analizer.compareFileOutputs(fileName, fileName)
+```
+### Checking the similarity of 2 source codes
+```javascript
+analizer.getCheckEqualCode(fileName,fileName)
+```
 
-    JSON :
-    {
-        functionNames: [],
-        classNames: [],
-        variableNames: []
+Example Code To Analizer
+```javascript
+class GanjilGenap {
+    constructor(angka) {
+        this.angka = angka;
     }
-### 4. Method used check equals output
-    const analizer = new CodeAnalyzer()
-    const checkOutput = analizer.compareFileOutputs(fileName, fileName)
-
-    JSON :
-    {
-        status: boolean,
-        expectedOutput: string,
-        actualOutput: string
+    getHasil() {
+        if (this.angka % 2 === 0) {
+            return 'Genap';
+        } else {
+            return 'Ganjil';
+        }
     }
-## 5. Method used check equals code
-    const checkEquals = analizer.getCheckEqualCode(fileName,fileName)
-    console.log(checkEquals)
+}
+const angka = 75;
+const verifyAngka = new GanjilGenap(angka);
+console.log(verifyAngka.getHasil());
+```
+Implementation Code Analizer
+```javascript
+import { CodeAnalyzer } from "grading-genius";
 
-    RETURN:
-    boolean
-## 6. Have fun code.
+const analizer = new CodeAnalyzer();
+const fileName = 'example.js';
 
-# Join collaboration GitHub
-https://github.com/fsdio/grading-genius
+const spec = analizer.getSpecificationsFromCode(fileName);
+console.log(spec);
+
+const checkOutput = analizer.compareFileOutputs(fileName, fileName);
+console.log(checkOutput);
+
+const checkEquals = analizer.getCheckEqualCode(fileName,fileName)
+console.log(checkEquals)
+```
+
+Return Compiler
+```jquery-css
+{
+  functionNames: [ 'constructor', 'getHasil' ],
+  classNames: [ 'GanjilGenap' ],
+  variableNames: [ 'angka', 'verifyAngka' ]
+}
+{ status: true, expectedOutput: 'R2Fuamls', actualOutput: 'R2Fuamls' }
+true
+```
+
+> Join collaboration GitHub
+> > https://github.com/fsdio/grading-genius
